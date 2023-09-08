@@ -29,9 +29,18 @@ class MainActivity : AppCompatActivity() {
             ApiUtill.ApiControlor()?.getData()?.enqueue(object : Callback<MyData?> {
                 override fun onResponse(call: Call<MyData?>, response: Response<MyData?>) {
                     var responseBody = response.body()
+
                     if (responseBody != null) {
                         userArrayList.addAll(responseBody)
                     }
+
+//                    val stringBulder = StringBuilder()
+//                    for (item in userArrayList){
+//                        stringBulder.append(item)
+//                    }
+//                    Log.d(TAG, "onResponse: "+stringBulder)
+
+
                     myAdapter = MyAdapter(this@MainActivity,userArrayList)
                     recyclerView.adapter = myAdapter
                     recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
